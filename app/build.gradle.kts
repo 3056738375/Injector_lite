@@ -1,15 +1,11 @@
 plugins {
-    id("com.android.application") version "8.1.0"
+    id("com.android.application")
     id("kotlin-android")
 }
 
 android {
     namespace = "com.injector.loader"
     compileSdk = 33
-    
-    aaptOptions {
-        noCompress("resources.pb")
-    }
 
     defaultConfig {
         applicationId = "com.injector.loader"
