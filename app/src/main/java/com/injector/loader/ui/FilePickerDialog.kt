@@ -77,16 +77,16 @@ class FilePickerDialog(val onSelect: (String) -> Unit) : AppCompatDialogFragment
         }
     }
 
-    private class FileAdapter(val items: List<FileItem>, val cb: (FileItem) -> Unit) :
-        RecyclerView.Adapter<FileAdapter.VH>() {
-        inner class VH(v: android.view.View) : RecyclerView.ViewHolder(v) {
-            fun bind(item: FileItem) {
-                v.findViewById<TextView>(android.R.id.text1).text = item.name
-                v.findViewById<TextView>(android.R.id.text2).text =
-                    if (item.isDir) "[文件夹]" else FileManager().formatSize(item.size)
-                v.setOnClickListener { cb(item) }
-            }
-        }
+     private class FileAdapter(val items: List<FileItem>, val cb: (FileItem) -> Unit) :
+         RecyclerView.Adapter<FileAdapter.VH>() {
+         inner class VH(itemView: android.view.View) : RecyclerView.ViewHolder(itemView) {
+             fun bind(item: FileItem) {
+                 itemView.findViewById<TextView>(android.R.id.text1).text = item.name
+                 itemView.findViewById<TextView>(android.R.id.text2).text =
+                     if (item.isDir) "[文件夹]" else FileManager().formatSize(item.size)
+                 itemView.setOnClickListener { cb(item) }
+             }
+         }
 
         override fun onCreateViewHolder(parent: android.view.ViewGroup, t: Int): VH {
             val v = LinearLayout(parent.context).apply {

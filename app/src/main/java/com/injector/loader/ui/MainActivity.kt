@@ -217,13 +217,13 @@ class MainActivity : AppCompatActivity() {
 
 private class AppAdapter(val items: List<com.injector.loader.core.AppItem>, val cb: (com.injector.loader.core.AppItem) -> Unit) :
     RecyclerView.Adapter<AppAdapter.VH>() {
-    inner class VH(v: android.view.View) : RecyclerView.ViewHolder(v) {
+    inner class VH(itemView: android.view.View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: com.injector.loader.core.AppItem) {
-            v.findViewById<ImageView>(android.R.id.icon).setImageDrawable(item.icon)
-            v.findViewById<TextView>(android.R.id.text1).text = item.appName
-            v.findViewById<TextView>(android.R.id.text2).text = item.packageName +
+            itemView.findViewById<ImageView>(android.R.id.icon).setImageDrawable(item.icon)
+            itemView.findViewById<TextView>(android.R.id.text1).text = item.appName
+            itemView.findViewById<TextView>(android.R.id.text2).text = item.packageName +
                     if (item.isDebug) " [D]" else ""
-            v.setOnClickListener { cb(item) }
+            itemView.setOnClickListener { cb(item) }
         }
     }
 
